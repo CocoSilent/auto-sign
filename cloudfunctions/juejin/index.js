@@ -63,6 +63,4 @@ async function juejin(event, context) {
     };
 }
 
-juejin();
-
 exports.main = juejin;
