@@ -1,6 +1,9 @@
 const http = require('https');
 
 async function juejin(event, context) {
+    const sessionid = process.env.juejin_sessionid;
+    const aid = process.env.juejin_aid;
+
     let result = false;
     let msg = '';
 
@@ -10,10 +13,10 @@ async function juejin(event, context) {
         var responseBuffer = [];
         const req = http.request({
             host: 'api.juejin.cn',
-            path: '/growth_api/v1/check_in?aid=2608',
+            path: '/growth_api/v1/check_in?aid=' + aid,
             method: 'POST',
             headers: {
-                'cookie': 'sessionid=' + '3d1dd4cf22004e4cf4b4358b736af9d4',
+                'cookie': 'sessionid=' + sessionid,
                 'Content-Type': 'application/json',
                 'Content-Length': Buffer.byteLength(postData)
             },
@@ -48,6 +51,11 @@ async function juejin(event, context) {
         result = false;
         msg = error;
     })
+
+    console.log({
+        result,
+        msg
+    });
 
     return {
         result,

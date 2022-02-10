@@ -19,7 +19,14 @@
               "memory": 128,
               "aclRule": {
                 "invoke": true
-              }
+              },
+              "triggers": [
+                {
+                  "name": "juejinTrigger",
+                  "type": "timer",
+                  "config": "0 0 2 * * * *"
+                }
+              ]
             }
           ]
         }
