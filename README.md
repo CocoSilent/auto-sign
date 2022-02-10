@@ -12,10 +12,12 @@
 
 ### 签到配置
 每个平台签到要配置项都是不一样的，每个用户的值也是不同的，因此把这些放到环境变量里，云开发部署完成后，点管理就可以添加环境变量。
+
 定时执行任务执行时间配置在cloudbaserc.json  triggers,可自行更改
 
 #### 掘金
-juejin_sessionid    sessionid 从登录掘金的cookie中拿
+juejin_sessionid    sessionid 从登录掘金的cookie中取
+
 juejin_aid    手动点击签到，从network找到check_in这个请求的参数中aid的值
 
 
