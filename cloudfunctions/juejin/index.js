@@ -18,6 +18,71 @@ async function juejin(event, context) {
         },
     }).then(res => {
         const body = JSON.parse(res);
+        if (body.err_no) {
+            result = false;
+            msg = body.err_msg;
+        } else {
+            result = true;
+        }
+    }).catch(error => {
+        result = false;
+        msg = error;
+    })
+
+    console.log({
+        result,
+        msg
+    });
+
+
+    // 查询免费抽奖次数
+
+    await utils.request({
+        url: 'https://api.juejin.cn/growth_api/v1/lottery_config/get?aid=' + aid,
+        headers: {
+            'cookie': 'sessionid=' + sessionid,
+        },
+    }).then(res => {
+        const body = JSON.parse(res);
+        if (body.err_no) {
+            result = false;
+            msg = body.err_msg;
+        } else {
+            if (body.free_count) {
+                result = true
+            } else {
+                result = false;
+                msg = '没有免费次数';
+            }
+        }
+    }).catch(error => {
+        result = false;
+        msg = error;
+    })
+
+    console.log({
+        result,
+        msg
+    });
+
+    if (!result) {
+        return {
+            result,
+            msg
+        };
+    }
+
+
+    // 继续抽奖吧
+
+    await utils.request({
+        url: 'https://api.juejin.cn/growth_api/v1/lottery/draw?aid=' + aid,
+        method: 'POST',
+        headers: {
+            'cookie': 'sessionid=' + sessionid,
+        },
+    }).then(res => {
+        const body = JSON.parse(res);
         if (body.err_msg) {
             result = false;
             msg = body.err_msg;
@@ -39,5 +104,7 @@ async function juejin(event, context) {
         msg
     };
 }
+
+juejin()
 
 exports.main = juejin;
