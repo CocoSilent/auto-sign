@@ -4,8 +4,8 @@
 const utils = require('./utils');
 
 async function juejin(event, context) {
-    const sessionid = process.env.juejin_sessionid || '4575cc41201bd68dd3cb882ab1ea5a13';
-    const aid = process.env.juejin_aid || '2608';
+    const sessionid = process.env.juejin_sessionid;
+    const aid = process.env.juejin_aid;
 
     let result = false;
     let msg = '';
