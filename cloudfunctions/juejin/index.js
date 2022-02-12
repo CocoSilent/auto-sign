@@ -48,7 +48,7 @@ async function juejin(event, context) {
             result = false;
             msg = body.err_msg;
         } else {
-            if (body.free_count) {
+            if (body.data.free_count) {
                 result = true
             } else {
                 result = false;
@@ -104,7 +104,5 @@ async function juejin(event, context) {
         msg
     };
 }
-
-juejin()
 
 exports.main = juejin;
