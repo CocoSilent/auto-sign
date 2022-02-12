@@ -23,6 +23,7 @@ async function juejin(event, context) {
             msg = body.err_msg;
         } else {
             result = true;
+            msg = '签到成功';
         }
     }).catch(error => {
         result = false;
@@ -49,7 +50,8 @@ async function juejin(event, context) {
             msg = body.err_msg;
         } else {
             if (body.data.free_count) {
-                result = true
+                result = true;
+                msg = '抽奖次数为' + body.data.free_count;
             } else {
                 result = false;
                 msg = '没有免费次数';
@@ -88,6 +90,7 @@ async function juejin(event, context) {
             msg = body.err_msg;
         } else {
             result = true;
+            msg = '抽奖成功';
         }
     }).catch(error => {
         result = false;
