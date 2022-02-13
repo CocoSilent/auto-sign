@@ -85,7 +85,7 @@ async function juejin(event, context) {
         },
     }).then(res => {
         const body = JSON.parse(res);
-        if (body.err_msg) {
+        if (body.err_no) {
             result = false;
             msg = body.err_msg;
         } else {
